@@ -1,55 +1,55 @@
-import React, { useState } from "react";
-import "./App.css";
-import Axios from "axios";
+import React, { useState } from 'react'
+import './App.css'
+import Axios from 'axios'
 
 function App() {
-  const [registerUsername, setRegisterUsername] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [data, setData] = useState(null);
+  const [registerUsername, setRegisterUsername] = useState('')
+  const [registerPassword, setRegisterPassword] = useState('')
+  const [loginUsername, setLoginUsername] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
+  const [data, setData] = useState(null)
   const register = () => {
     Axios({
-      method: "POST",
+      method: 'POST',
       data: {
         username: registerUsername,
         password: registerPassword,
       },
       withCredentials: true,
-      url: "http://localhost:4000/register",
-    }).then((res) => console.log(res));
-  };
+      url: 'https://passport-test-video.herokuapp.com/register',
+    }).then((res) => console.log(res))
+  }
   const login = () => {
     Axios({
-      method: "POST",
+      method: 'POST',
       data: {
         username: loginUsername,
         password: loginPassword,
       },
       withCredentials: true,
-      url: "http://localhost:4000/login",
-    }).then((res) => console.log(res));
-  };
+      url: 'https://passport-test-video.herokuapp.com/login',
+    }).then((res) => console.log(res))
+  }
   const getUser = () => {
     Axios({
-      method: "GET",
+      method: 'GET',
       withCredentials: true,
-      url: "http://localhost:4000/user",
+      url: 'https://passport-test-video.herokuapp.com/user',
     }).then((res) => {
-      setData(res.data);
-      console.log(res.data);
-    });
-  };
+      setData(res.data)
+      console.log(res.data)
+    })
+  }
   return (
-    <div className="App">
+    <div className='App'>
       <div>
         <h1>Register</h1>
         <input
-          placeholder="username"
+          placeholder='username'
           onChange={(e) => setRegisterUsername(e.target.value)}
         />
         <input
-          placeholder="password"
+          placeholder='password'
           onChange={(e) => setRegisterPassword(e.target.value)}
         />
         <button onClick={register}>Submit</button>
@@ -58,11 +58,11 @@ function App() {
       <div>
         <h1>Login</h1>
         <input
-          placeholder="username"
+          placeholder='username'
           onChange={(e) => setLoginUsername(e.target.value)}
         />
         <input
-          placeholder="password"
+          placeholder='password'
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <button onClick={login}>Submit</button>
@@ -74,7 +74,7 @@ function App() {
         {data ? <h1>Welcome Back {data.username}</h1> : null}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
